@@ -1,14 +1,3 @@
-SELECT * From dbsys33.Land;
-SELECT * From dbsys33.Kunden;
-SELECT * From dbsys33.Ferienwohnung;
-SELECT * FRom dbsys33.Buchung;
-SELECT * FRom dbsys33.Touriattraktion;
-SELECT * FRom dbsys33.Attraktioninfo;
-SELECT * FROM dbsys33.Bild;
-SELECT * FRom dbsys33.Ausstattung;
-SELECT * FRom dbsys33.Besitzt;
-INSERT INTO dbsys33.Buchung(Land_Name) VALUES ('Deutschland');
-
 /* Frage 1 */
 SELECT * 
 From dbsys33.Ferienwohnung
