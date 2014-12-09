@@ -1,22 +1,13 @@
-SELECT * From dbsys33.Land;
-SELECT * From dbsys33.Kunden;
-SELECT * From dbsys33.Ferienwohnung;
-SELECT * FRom dbsys33.Buchung;
-SELECT * FRom dbsys33.Touriattraktion;
-SELECT * FRom dbsys33.Attraktioninfo;
-SELECT * FROM dbsys33.Bild;
-SELECT * FRom dbsys33.Ausstattung;
-SELECT * FRom dbsys33.Besitzt;
-INSERT INTO dbsys33.Buchung(Land_Name) VALUES ('Deutschland');
-
 /* Frage 1 */
-SELECT * 
-From dbsys33.Ferienwohnung
-Where 
-WOHNUNG_NAME NOT IN (SELECT WOHNUNG_NAME FROM dbsys33.Buchung WHERE (ZEITRAUM_VON BETWEEN TO_DATE('01.11.2012', 'DD.MM.YYYY') AND TO_DATE('21.11.2012', 'DD.MM.YYYY')) AND 
-(ZEITRAUM_BIS BETWEEN TO_DATE('01.11.2012', 'DD.MM.YYYY') AND TO_DATE('21.11.2012', 'DD.MM.YYYY'))) AND
-WOHNUNG_NAME IN (SELECT WOHNUNG_NAME From dbsys33.Besitzt WHERE BEZEICHNUNG Like 'Sauna') AND 
-WOHNUNG_NAME  IN (SELECT WOHNUNG_NAME FROM dbsys33.FERIENWOHNUNG WHERE LAND_NAME Like 'Spanien');
+SELECT dbsys35.FERIENWOHNUNG.fewonr
+FROM dbsys35.FERIENWOHNUNG INNER JOIN dbsys35.BESITZTAUSSTATTUNG
+ON (BESITZTAUSSTATTUNG.FEWONR = FERIENWOHNUNG.FEWONR) LEft OUTER JOIN
+(SELECT Fewonr from dbsys35.BUCHUNG WHERE BUCHUNG.von <= '21.11.2012'
+AND BUCHUNG.bis >= '01.11.2012') buchung on (buchung.fewonr = ferienwohnung.fewonr)
+WHERE buchung.Fewonr is null AND FERIENWOHNUNG.LANDNAME='Spanien'
+AND besitztausstattung.ausstattungsname = 'Sauna'
+GROUP BY dbsys35.FERIENWOHNUNG.fewonr;
+
 
 /* Frage 2 */
 SELECT dbsys33.Besitzt.WOHNUNG_NAME
