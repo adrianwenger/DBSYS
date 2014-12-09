@@ -20,7 +20,6 @@ Having COUNT(dbsys33.Besitzt.Bezeichnung) = (SELECT MAX(besitzt.Anzahl)
                 besitzt);
                 
 
-
 /* Frage 3 */
 SELECT land.LAND_NAME, COUNT(kuenftigebuchung.ZEITRAUM_VON) as ANZAHL
 FROM dbsys33.LAND land INNER JOIN dbsys33.Ferienwohnung fewo ON (land.LAND_NAME = fewo.LAND_NAME)
