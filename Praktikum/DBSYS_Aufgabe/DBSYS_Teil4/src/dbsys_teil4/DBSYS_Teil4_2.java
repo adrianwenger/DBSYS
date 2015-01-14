@@ -64,13 +64,16 @@ public class DBSYS_Teil4_2 {
 
         Connection conn = null;
         Statement stmt = null;
+        Statement stmt2 = null;
         try {
             conn = DriverManager.getConnection(url, "dbsys60", "dbsys60");
             System.out.println("Verbindung aufgebaut");
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(queryPart2);
             System.out.println("Wohnug wurde gebucht");
-            conn.commit();
+            if (!conn.getAutoCommit()) {
+                conn.commit();
+            }
             conn.close();
             System.out.println("Verbindung erfolgreich geschlossen.");
         } catch (SQLException ex) {
